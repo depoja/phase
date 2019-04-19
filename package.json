@@ -1,6 +1,6 @@
 {
   "name": "@klintm/phase",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Micro-store/change emitter",
   "repository": "https://github.com/klintmane/phase",
   "author": "Klint Mane <klintmane@gmail.com>",
