@@ -58,8 +58,11 @@ phase.set("people[0].age", 25); // Path accessors for both objects and arrays
 phase.set("people[0]['name']"); // Strings can be used as well
 
 const ageChanged = (oldAge, newAge) => console.log(`You are: ${newAge}`);
+
 phase.on("people[0].age", ageChanged); // Subscribe to changes
 phase.off(ageChanged); // Remove subscriptions
+
+phase.on(["people", "count"], console.log); // Subscribe to multiple changes
 
 phase.actions.increment(); // Action dispatches
 ```

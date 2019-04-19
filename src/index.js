@@ -13,14 +13,17 @@ const Phase = (state, getActions) => {
     notifyListeners(path, old, val);
   };
   const addListener = (path, l) => {
-    l.pathStr = parsePath(path).join();
+    const paths = Array.isArray(path) ? path : [path];
+    l.paths = paths.map(p => parsePath(p).join());
     listeners.push(l);
   };
   const removeListener = l => listeners.splice(listeners.indexOf(l) >>> 0, 1);
   const notifyListeners = (path, old, val) => {
     const pathStr = parsePath(path).join();
     listeners.forEach(
-      l => (l.pathStr === "*" || l.pathStr.startsWith(pathStr)) && l(old, val)
+      l =>
+        (l.paths.includes("*") || l.paths.some(p => pathStr.startsWith(p))) &&
+        l(old, val)
     );
   };
 
